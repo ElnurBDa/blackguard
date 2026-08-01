@@ -8,18 +8,7 @@ The deck *is* the dungeon. Fight monsters, wield degrading weapons, sip potions,
 and try to survive to the last card. (*Blackguard* is an old word for a
 scoundrel — and a nod to the black-suit ♠♣ monsters you'll be fighting.)
 
-```
-        ♠♥ SCOUNDREL ♦♣                                    strict rules
-   HP ♥♥♥♥♥♥♥♥♥♥♥♥♥♥······  14/20
-  ╭ Room ─────────────────────────────────────╮╭ Equipment ──────────────╮
-  │   ╔═════════╗   ╭─────────╮   ╭─────────╮  ││ Weapon  10♦             │
-  │   ║K        ║   │7        │   │9        │  ││ hits monsters < 6       │
-  │   ║    ♠    ║   │    ♥    │   │    ♦    │  ││ slain   8 6             │
-  │   ║        K║   │        7│   │        9│  ││                         │
-  │   ╚═════════╝   ╰─────────╯   ╰─────────╯  ││ Rooms cleared  0        │
-  │     take -13      heal +7     weapon 9     ││ Deck           40       │
-  ╰────────────────────────────────────────────╯╰─────────────────────────╯
-```
+![Blackguard — a game of Scoundrel running in the terminal](https://raw.githubusercontent.com/ElnurBDa/blackguard/main/assets/screenshot.png)
 
 ## Install
 
