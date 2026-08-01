@@ -11,7 +11,7 @@ license = "MIT"
 keywords = ["tui", "game", "roguelike", "cards", "scoundrel"]
 categories = ["command-line-utilities", "games"]
 readme = "README.md"
-exclude = [".github/", "flake.nix", "flake.lock", "shell.nix"]
+exclude = [".github/", ".claude/", "flake.nix", "flake.lock", "shell.nix"]
 default-run = "blackguard"
 
 [[bin]]
