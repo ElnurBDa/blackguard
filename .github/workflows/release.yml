@@ -1,0 +1,58 @@
+name: Release
+
+# Tag a version to cut a cross-platform release:
+#   git tag v0.1.0 && git push --tags
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  binaries:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-musl # static; runs on any Linux
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-musl # static; ARM Linux
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # Builds (cross-compiling via `cross` where needed), strips, archives,
+      # and uploads the binary to the GitHub Release for this tag.
+      - uses: taiki-e/upload-rust-binary-action@v1
+        with:
+          bin: blackguard
+          target: ${{ matrix.target }}
+          archive: blackguard-$tag-$target
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  crates-io:
+    name: publish to crates.io
+    runs-on: ubuntu-latest
+    # Only runs if a CRATES_IO_TOKEN secret is configured.
+    if: ${{ github.repository_owner != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Publish
+        env:
+          TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+        run: |
+          if [ -n "$TOKEN" ]; then
+            cargo publish --token "$TOKEN"
+          else
+            echo "CRATES_IO_TOKEN not set — skipping crates.io publish."
+          fi
