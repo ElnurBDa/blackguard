@@ -1,6 +1,6 @@
 [package]
 name = "blackguard"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.85"
 description = "Blackguard: a beautiful terminal implementation of the solo card game Scoundrel"

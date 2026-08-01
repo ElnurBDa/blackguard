@@ -20,7 +20,7 @@
         pkgs: _system: {
           default = pkgs.rustPlatform.buildRustPackage {
             pname = "blackguard";
-            version = "0.1.0";
+            version = "0.1.1";
             src = ./.;
             cargoLock.lockFile = ./Cargo.lock;
             meta = with pkgs.lib; {
